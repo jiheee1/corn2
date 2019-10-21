@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<idoctype html>
+		<title>죽는다 죽어</title>
+	
+		<style type="text/css">
+
+
+			body{background:#7dafdc;}
+			h1{position: absolute; color: red; font-size: 75px; left: -120px; width: 400px;}
+			.ai{width: 1300px;}
+			.te{position: absolute; top: -60px; left:100px;}
+			.ho{width: 1300px; left:-50px; top:3px;}
+			.balloon{width: 150px; height: 150px;  background-repeat: no-repeat; animation: bMove 20s linear;}
+
+			@keyframes bMove{
+				0%{ background-position: 0 150px; opacity: 0;}
+				20%{opacity: 1;}
+				80%{opacity: 1;}
+				100%{background-position: 0 0; opacity: 1;}
+			}
+
+
+		
+
+			.rain{width: 2px; height: 2px;  position: absolute; background: white;
+			animation: rr 1s infinite ease-in;}
+		.rain:hover{height:2px;}
+		
+		@keyframes rr{from{bottom: 800px;} to{bottom: 0px;}}
+
+
+
+			#icon{width:100px;height:100px;
+			position:relative;
+			animation:iconMove 5s infinite linear;	}
+			@keyframes iconMove{
+			0%{ top:0px; left:300px; transform: rotateZ(0deg)}
+			25%{ top:0px; left:600px; }
+			50%{ top:200px; left:900px; }
+			75%{ top:500px; left:1000px; }
+			100%{ top:1000px; left:300px; transform: rotateZ(2000deg);}
+
+
+		
+		</style>
+		
+		<div class="ai"> 
+			<h1><img src="./text.png" class="te"><</h1>
+			<div class="rain" id="tt"></div>
+			<img src="./a.png" id="icon">
+			<img src="./home.png" class="ho">
+	
+		</div>
+		
+
+
+			<audio id="mysound"></audio>
+		
+		<script type="text/javascript">
+
+			setInterval(attachBalloon,1000);
+			
+			function attachBalloon(){
+				var t = document.createElement("div");
+				t.setAttribute("class","balloon");
+				t.style.position ="absolute";
+
+
+
+				t.style.background = "url('corn.png') no-repeat";
+				t.style.backgroundSize = "100% auto";
+
+				t.style.top = randomBH(0,window.innerHeight) + "px";
+				t.style.left = randomBH(0,window.innerWidth) + "px";
+				t.style.animationDuration = Math.random()*9 + "s";
+				t.addEventListener("animationend",remove);
+				
+				t.onclick = function(){
+					t.style.background ="url(pop.png)";
+					t.style.backgroundSize = "100% auto";
+
+				}
+				document.body.appendChild(t);
+
+			}
+
+			function remove(){
+				var t = event.target;
+				t.parentNode.removeChild(t);
+			}
+			
+
+			
+
+			function randomBH(min, max) {
+				min = Math.ceil(min);
+				max = Math.floor(max);
+				return Math.floor(Math.random()*(max-min+1))+min;
+			}
+			
+			
+			for(var i=0; i<50; i++){
+
+			var b =tt.cloneNode(true);
+			b.id = i;
+			b.clssName = "rain";
+			b.style.left = Math.random()*window.innerWidth + "px";
+			b.style.height = Math.random()*50 +"px";
+			b.style.animationDuration = Math.random()*8 + "s";
+			b.style.background = "white";
+			
+			document.body.appendChild(b);
+			}
+		
+		</script>
+		
+	</idoctype>
+</body>
+</html>
